@@ -8,9 +8,16 @@ import { memberProviders } from './domains/member/member.providers';
 import { bookProviders } from './domains/book/book.providers';
 import { BorrowModule } from './domains/borrow/borrow.module';
 import { borrowProviders } from './domains/borrow/borrow.providers';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [MemberModule, BookModule, DatabaseModule, BorrowModule],
+  imports: [
+    MemberModule,
+    BookModule,
+    DatabaseModule,
+    BorrowModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
