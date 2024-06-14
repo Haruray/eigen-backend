@@ -2,42 +2,44 @@ import { Inject, Injectable } from '@nestjs/common';
 import { CreateMemberDto } from './dto/create-member.dto';
 import { UpdateMemberDto } from './dto/update-member.dto';
 import { Model } from 'mongoose';
-import { Book } from '../book/entities/book.interface';
+import { Member } from './entities/member.entity';
 
 @Injectable()
 export class MemberService {
   constructor(
     @Inject('MEMBER_MODEL')
-    private bookModel: Model<Book>,
+    private memberModel: Model<Member>,
   ) {}
 
   async create(createMemberDto: CreateMemberDto) {
-    const createdBook = new this.bookModel(createMemberDto);
-    return createdBook.save();
+    const createdBook = new this.memberModel(createMemberDto);
+    return await createdBook.save();
   }
 
   async findAll() {
-    return this.bookModel.find().exec();
+    return await this.memberModel.find().exec();
   }
 
-  findOne(id: number) {
-    const book = this.bookModel.findById(id).exec();
+  async findOne(id: number) {
+    const book = await this.memberModel.findById(id).exec();
     if (!book) {
       return null;
     }
     return book;
   }
 
-  update(id: number, updateMemberDto: UpdateMemberDto) {
-    const book = this.bookModel.findByIdAndUpdate(id, updateMemberDto).exec();
+  async update(id: number, updateMemberDto: UpdateMemberDto) {
+    const book = await this.memberModel
+      .findByIdAndUpdate(id, updateMemberDto)
+      .exec();
     if (!book) {
       return null;
     }
     return book;
   }
 
-  remove(id: number) {
-    const book = this.bookModel.findByIdAndDelete(id).exec();
+  async remove(id: number) {
+    const book = await this.memberModel.findByIdAndDelete(id).exec();
     if (!book) {
       return null;
     }

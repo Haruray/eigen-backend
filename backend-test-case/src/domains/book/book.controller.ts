@@ -9,11 +9,11 @@ export class BookController {
 
   @Get()
   async findAll(): Promise<Book[]> {
-    return this.bookService.findAll();
+    return await this.bookService.findAll();
   }
 
   @Post()
   async create(@Body(ValidationPipe) book: CreateBookDto): Promise<Book> {
-    return this.bookService.create(book);
+    return await this.bookService.create(book);
   }
 }

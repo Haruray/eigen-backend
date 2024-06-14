@@ -12,10 +12,10 @@ export class BookService {
 
   async create(createCatDto: CreateBookDto): Promise<Book> {
     const createdCat = new this.bookModel(createCatDto);
-    return createdCat.save();
+    return await createdCat.save();
   }
 
   async findAll(): Promise<Book[]> {
-    return this.bookModel.find().exec();
+    return await this.bookModel.find().exec();
   }
 }
