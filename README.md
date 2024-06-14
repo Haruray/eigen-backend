@@ -3,8 +3,7 @@
 Safiq Faray (syafiqfaray3@gmail.com)
 
 Information about backend implementation : 
-- Using NestJS, Mongoose
-- MongoDB Atlas free tier as database
+- Using NestJS, Mongoose (MongoDB)
 - Regarding the features, see the checkmarks below for what i have and haven't implemented
 - Every API is listed on Swagger (localhost/api) and run /migrate-mocks-to-database to reset current data and migrate mocks to database
 
