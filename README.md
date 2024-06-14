@@ -1,6 +1,6 @@
 # Backend Test Case
 
-Safiq Faray
+Safiq Faray (syafiqfaray3@gmail.com)
 
 Information about backend implementation : 
 - Using NestJS, Mongoose
