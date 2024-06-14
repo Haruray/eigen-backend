@@ -31,17 +31,4 @@ export class MemberController {
   async findOne(@Param('id') id: string) {
     return await this.memberService.findOne(+id);
   }
-
-  @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updateMemberDto: UpdateMemberDto,
-  ) {
-    return await this.memberService.update(+id, updateMemberDto);
-  }
-
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.memberService.remove(+id);
-  }
 }

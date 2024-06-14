@@ -16,6 +16,8 @@ export class BookService {
   }
 
   async findAll(): Promise<Book[]> {
-    return await this.bookModel.find().exec();
+    const data = await this.bookModel.find().exec();
+    // if stock is 0, delete the book from data
+    return data.filter((book) => book.stock > 0);
   }
 }

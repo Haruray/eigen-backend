@@ -5,5 +5,4 @@ export const BookSchema = new mongoose.Schema({
   title: String,
   author: String,
   stock: Number,
-  borrowedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Member' },
 });
