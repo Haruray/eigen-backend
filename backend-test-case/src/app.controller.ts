@@ -4,17 +4,21 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { BorrowDto } from './dto/borrow.dto';
 import { ReturnDto } from './dto/return.dto';
 
-@ApiTags('app - main')
+@ApiTags('App - Main')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @ApiOperation({
+    summary: 'Migrate mocks to database and reset existing data',
+  })
   @Get('migrate-mocks-to-database')
   async migrateMocksToDatabase(): Promise<string> {
     await this.appService.reset();
     return 'Migration completed';
   }
 
+  @ApiOperation({ summary: 'Borrow a book' })
   @Post('borrow')
   async borrow(
     @Body(ValidationPipe)
@@ -32,6 +36,7 @@ export class AppController {
     }
   }
 
+  @ApiOperation({ summary: 'Return a book' })
   @Post('return')
   async return(
     @Body(ValidationPipe)
