@@ -102,7 +102,6 @@ export class AppService {
       throw new Error('Member has not borrowed the book');
     }
     // if return date is more than 7 days from borrow date, member will get penalty
-    console.log(returnDate);
     const isLateReturn =
       returnDate.getTime() - borrow.borrowDate.getTime() >
       7 * 24 * 60 * 60 * 1000;
@@ -111,6 +110,9 @@ export class AppService {
       member.lastBookReturnedTimeStamps = returnDate;
       await member.save();
     }
+    //increase book stock
+    book.stock++;
+    await book.save();
     //update borrow data
     borrow.returnDate = returnDate;
     return await borrow.save();
