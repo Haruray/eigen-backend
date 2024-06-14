@@ -66,6 +66,11 @@ export class AppService {
     if (!isValidForBorrow) {
       throw new Error('Member is not allowed to borrow book');
     }
+    // remove penalty if member has returned the book
+    if (member.isInPenalty) {
+      member.isInPenalty = false;
+      await member.save();
+    }
     //decrease book stock
     book.stock--;
     await book.save();
